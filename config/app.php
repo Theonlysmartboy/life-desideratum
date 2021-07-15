@@ -179,6 +179,8 @@ return [
         */
         //Image processing
         Intervention\Image\ImageServiceProvider::class,
+        //Pdf processing
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -238,6 +240,8 @@ return [
          */
         //Image procesing
         'Image' => Intervention\Image\Facades\Image::class,
+        //Pdf Processing
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
 
     ],
