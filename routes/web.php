@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,11 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+Route::prefix('dashboard')->group(function () {
+    Route::get('/master', [DashboardController::class, 'master'])->name('master.dashboard');
+    Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

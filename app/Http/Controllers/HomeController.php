@@ -28,10 +28,10 @@ class HomeController extends Controller
         }
 
         if ($request->user()->hasRole('admin')){
-            return redirect('/admin/dashboard');
+            return redirect('/dashboard/master/admin');
         }
-        if ($request->user()->hasRole('super admin')){
-            return redirect('/master/dashboard');
+        if ($request->user()->hasRole('super')){
+            return redirect('/dashboard/master');
         }
     }
 }
