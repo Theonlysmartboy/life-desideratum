@@ -15,7 +15,14 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('sub_title');
+            $table->text('content');
+            $table->string('media')->nullable();
+            $table->string('slug')->nullable();
+            $table->foreignId('author')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
