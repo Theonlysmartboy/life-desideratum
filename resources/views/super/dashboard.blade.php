@@ -19,6 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="button button-primary"><a href="{{ route('post.create') }}" class="btn btn-success">New Post</a></div>
                 @foreach ($posts as $post)
                     <div class="post-preview">
                         <a href="post.html">

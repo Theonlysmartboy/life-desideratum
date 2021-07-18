@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +13,7 @@
     <!-- Theme CSS -->
     <link href="{{ asset('assets/css/clean-blog.min.css') }}" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet') }}" type="text/css">
+    <link href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
         type='text/css'>
     <link
@@ -25,6 +26,7 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 </head>
+
 <body>
     @include('layouts.super.header')
     @yield('content')
@@ -38,5 +40,33 @@
     <script src="{{ asset('assets/js/contact_me.js') }}"></script>
     <!-- Theme JavaScript -->
     <script src="{{ asset('assets/js/clean-blog.min.js') }}"></script>
+    <script src="https://cdn.tiny.cloud/1/vol2v0g1zrng891tbqsa3uvgjalmweyavcvnduofaz2kmnh2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea#content',
+            skin: 'bootstrap',
+            plugins: 'lists, link, image, media',
+            toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+            menubar: false,
+            setup: (editor) => {
+                // Apply the focus effect
+                editor.on("init", () => {
+                    editor.getContainer().style.transition =
+                        "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out";
+                });
+                editor.on("focus", () => {
+                    (editor.getContainer().style.boxShadow =
+                        "0 0 0 .2rem rgba(0, 123, 255, .25)"),
+                    (editor.getContainer().style.borderColor = "#80bdff");
+                });
+                editor.on("blur", () => {
+                    (editor.getContainer().style.boxShadow = ""),
+                    (editor.getContainer().style.borderColor = "");
+                });
+            },
+        });
+    </script>
 </body>
+
 </html>
