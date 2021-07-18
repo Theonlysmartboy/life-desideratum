@@ -15,13 +15,13 @@
             </div>
         </div>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <div>
             <a href="{{ route('master.dashboard') }}" class="btn btn-xs">&nbsp;
                 <i class="fa fa-arrow-left"></i>Back</a>
         </div>
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-lg-8 col-lg-offset-2 col-md-12 col-md-offset-1">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title text-center text-primary">New Post</h3>
@@ -36,9 +36,9 @@
                             <label for="sub_title" class="form-label">Sub Title</label>
                             <input type="text" class="form-control" name="sub_title">
                         </div>
-                        <div class="form-group">
+                        <div>
                             <label for="content" class="form-label">Content</label>
-                            <textarea name="content" id="content" cols="30" rows="10" class="form-control"></textarea>
+                            <textarea name="content" id="summernote"></textarea>
                         </div>
                         <div class="card-footer">
                             <input type="submit" value="Save" class="form-control btn btn-success">
@@ -47,4 +47,5 @@
                 </div>
             </div>
         </div>
+    <hr>
 @endsection
