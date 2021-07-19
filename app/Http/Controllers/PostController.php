@@ -19,8 +19,8 @@ class PostController extends Controller
             return redirect('/login');
         }
         if ($request->user()->hasRole('super')){
-           $posts = Post::get();
-           return view('post.index',compact('posts'));
+            $posts = Post::get();
+            return view('post.index',compact('posts'));
         }
     }
 
@@ -59,7 +59,7 @@ class PostController extends Controller
             $post->content = $request->content;
             $post->author = Auth::user()->id;
             $post->save();
-            return redirect("/dasboard/post");
+            return redirect("/dashboard/post");
         }
     }
 
@@ -71,7 +71,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        
+        return view('post.show',compact('post'));
     }
 
     /**

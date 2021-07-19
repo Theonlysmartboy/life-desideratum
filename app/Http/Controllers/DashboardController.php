@@ -14,7 +14,7 @@ class DashboardController extends Controller
             return redirect('/login');
         }
         if ($request->user()->hasRole('super')){
-            $posts = Post::get();
+            $posts = Post::latest()->get();
             return view('super.dashboard',compact('posts'));
         }
     }

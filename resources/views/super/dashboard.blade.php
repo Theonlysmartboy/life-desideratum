@@ -22,7 +22,7 @@
                 <div class="button button-primary"><a href="{{ route('post.create') }}" class="btn btn-success">New Post</a></div>
                 @foreach ($posts as $post)
                     <div class="post-preview">
-                        <a href="post.html">
+                        <a href="{{ route('post.show',$post) }}">
                             <h2 class="post-title">
                                 {{ $post->title }}
                             </h2>
