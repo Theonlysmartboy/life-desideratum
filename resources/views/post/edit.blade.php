@@ -26,8 +26,9 @@
                     <div class="card-header">
                         <h3 class="card-title text-center text-primary">Edit Post</h3>
                     </div>
-                    <form action="{{ route('post.update',$post) }}" method="PUT">
+                    <form action="{{ route('post.update',$post) }}" method="POST">
                         @csrf
+                        <input name="_method" type="hidden" value="PUT">
                         <div class="form-group">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" name="title" class="form-control" value="{{ $post->title }}" required>

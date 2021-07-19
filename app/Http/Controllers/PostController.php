@@ -111,9 +111,9 @@ class PostController extends Controller
         }
         if ($request->user()->hasRole('super'))
         {
-            $current = Post::where(['id'=>$post->id]);
-            $current->update($request->all());
-            return redirect()->back();
+            $input = $request->all();
+            $post->fill($input)->save();
+            return redirect("/dashboard/post");
         }
     }
 
