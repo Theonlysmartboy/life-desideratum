@@ -13,9 +13,15 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        if ($request->user()->hasRole('super')){
+           $posts = Post::get();
+           return view('post.index',compact('posts'));
+        }
     }
 
     /**
@@ -42,13 +48,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->title = $request->title;
-        $post->sub_title = $request->sub_title;
-        $post->content = $request->content;
-        $post->author = Auth::user()->id;
-        $post->save();
-        return redirect("/dasboard/post");
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        if ($request->user()->hasRole('super'))
+        {
+            $post = new Post();
+            $post->title = $request->title;
+            $post->sub_title = $request->sub_title;
+            $post->content = $request->content;
+            $post->author = Auth::user()->id;
+            $post->save();
+            return redirect("/dasboard/post");
+        }
     }
 
     /**
@@ -59,7 +71,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        
     }
 
     /**

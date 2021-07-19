@@ -42,12 +42,11 @@
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
-                        <a href="#">Older Posts &rarr;</a>
+                        <a href="{{ route('post.index') }}">Older Posts &rarr;</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-
     <hr>
 @endsection
