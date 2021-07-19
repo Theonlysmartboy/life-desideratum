@@ -42,7 +42,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $post = new Post();
+        $post->title = $request->title;
+        $post->sub_title = $request->sub_title;
+        $post->content = $request->content;
+        $post->author = Auth::user()->id;
+        $post->save();
+        return redirect("/dasboard/post");
     }
 
     /**

@@ -30,12 +30,15 @@
                                 {{ $post->sub_title }}
                             </h3>
                         </a>
-                        <p class="post-meta">Posted by <a href="#">{{ $post->author }}</a> {{ $post->cerated_at }}</p>
+                        <p class="post-meta">Posted by: <a href="#">
+                            @if ($post->author == Auth::user()->id)
+                                {{ Auth::user()->name }}
+                            @else
+                                User
+                            @endif</a> On: {{ $post->created_at }}</p>
                     </div>
                     <hr>
-
                 @endforeach
-
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
