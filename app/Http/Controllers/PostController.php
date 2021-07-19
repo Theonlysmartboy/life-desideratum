@@ -69,9 +69,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post, Request $request)
     {
-        return view('post.show',compact('post'));
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        if ($request->user()->hasRole('super'))
+        {
+            return view('post.show',compact('post'));
+        }
     }
 
     /**
@@ -80,9 +86,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post, Request $request)
     {
-        //
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        if ($request->user()->hasRole('super'))
+        {
+        return view('post.edit',compact('post'));
+        }
     }
 
     /**
@@ -94,7 +106,15 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        if ($request->user()->hasRole('super'))
+        {
+            $current = Post::where(['id'=>$post->id]);
+            $current->update($request->all());
+            return redirect()->back();
+        }
     }
 
     /**
@@ -103,7 +123,7 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, Request $request)
     {
         //
     }

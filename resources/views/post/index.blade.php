@@ -16,9 +16,9 @@
         </div>
     </header>
     <!-- Main Content -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-lg-9 col-lg-offset-2 col-md-11 col-md-offset-1">
                 <a href="{{ route('master.dashboard') }}" class="btn btn-xs">&nbsp;
                     <i class="fa fa-arrow-left"></i>Back</a>
                 <table id="example2" class="table table-bordered table-hover">
@@ -30,6 +30,7 @@
                             <th>Media</th>
                             <th>Slug</th>
                             <th>Author</th>
+                            <th>Created On</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -38,7 +39,7 @@
                         <tr>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->sub_title }}</td>
-                            <td>{!! $post->content !!}</td>
+                            <td>{{ \Illuminate\Support\Str::limit($post->content, 50, $end='...') }}</td>
                             <td>{{ $post->media }}</td>
                             <td>{{ $post->slug }}</td>
                             <td>@if ($post->author == Auth::user()->id)
@@ -47,9 +48,15 @@
                                 User
                                 @endif
                             </td>
-                            <td>{{ $post->created_at }}</td>
+                            <td>{{ \Carbon\Carbon::parse($post->created_at)->isoFormat('MMM Do YYYY') }}</td>
+                            <td><a href="{{ route('post.show',$post) }}" class=" btn-primary btn-sm">
+                                <i class="fa fa-eye"></i></a>
+                                |
+                                <a href="{{ route('post.edit',$post) }}" class=" btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                                |
+                                <a href="{{ route('post.destroy',$post) }}" class=" btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                            </td>
                         </tr>
-                            
                         @endforeach
                     </tbody>
                     <tfoot>
@@ -60,6 +67,7 @@
                             <th>Media</th>
                             <th>Slug</th>
                             <th>Author</th>
+                            <th>Created On</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

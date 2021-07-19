@@ -35,7 +35,7 @@
                                 {{ Auth::user()->name }}
                             @else
                                 User
-                            @endif</a> On: {{ $post->created_at }}</p>
+                            @endif</a> On: {{ \Carbon\Carbon::parse($post->created_at)->isoFormat('MMM Do YYYY') }}</p>
                     </div>
                     <hr>
                 @endforeach
