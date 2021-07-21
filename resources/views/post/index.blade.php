@@ -35,28 +35,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($posts as $post )
-                        <tr>
-                            <td>{{ $post->title }}</td>
-                            <td>{{ $post->sub_title }}</td>
-                            <td>{{ \Illuminate\Support\Str::limit($post->content, 50, $end='...') }}</td>
-                            <td>{{ $post->media }}</td>
-                            <td>{{ $post->slug }}</td>
-                            <td>@if ($post->author == Auth::user()->id)
-                                {{ Auth::user()->name }}
-                            @else
-                                User
-                                @endif
-                            </td>
-                            <td>{{ \Carbon\Carbon::parse($post->created_at)->isoFormat('MMM Do YYYY') }}</td>
-                            <td><a href="{{ route('post.show',$post) }}" class=" btn-primary btn-sm">
-                                <i class="fa fa-eye"></i></a>
-                                |
-                                <a href="{{ route('post.edit',$post) }}" class=" btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
-                                |
-                                <a href="{{ route('post.destroy',$post) }}" class=" btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        @foreach ($posts as $post)
+                            <tr>
+                                <td>{{ $post->title }}</td>
+                                <td>{{ $post->sub_title }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($post->content, 50, $end = '...') }}</td>
+                                <td>{{ $post->media }}</td>
+                                <td>{{ $post->slug }}</td>
+                                <td>
+                                    @if ($post->author == Auth::user()->id)
+                                        {{ Auth::user()->name }}
+                                    @else
+                                        User
+                                    @endif
+                                </td>
+                                <td>{{ \Carbon\Carbon::parse($post->created_at)->isoFormat('MMM Do YYYY') }}</td>
+                                <td><a href="{{ route('post.show', $post) }}" class=" btn-primary btn-sm">
+                                        <i class="fa fa-eye"></i></a>
+                                    |
+                                    <a href="{{ route('post.edit', $post) }}" class=" btn-warning btn-sm">
+                                        <i class="fa fa-pencil"></i></a>
+                                    |
+                                    <form action="{{ route('post.destroy', $post->id) }}" method="POST">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <button class="btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                     <tfoot>

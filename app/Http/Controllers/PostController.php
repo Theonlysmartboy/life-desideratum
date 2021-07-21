@@ -125,6 +125,13 @@ class PostController extends Controller
      */
     public function destroy(Post $post, Request $request)
     {
-        //
+        if(!Auth::check()){
+            return redirect('/login');
+        }
+        if ($request->user()->hasRole('super'))
+        {
+            Post::destroy($post->id);
+            return redirect("/dashboard/post");
+        }
     }
 }
