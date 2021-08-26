@@ -58,6 +58,7 @@ class PostController extends Controller
             $post->sub_title = $request->sub_title;
             $post->content = $request->content;
             $post->author = Auth::user()->id;
+            $post->created_at = $request->created_at;
             $post->save();
             return redirect("/dashboard/post");
         }

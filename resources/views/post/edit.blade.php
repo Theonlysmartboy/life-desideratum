@@ -41,6 +41,10 @@
                             <label for="content" class="form-label">Content</label>
                             <textarea name="content" id="summernote">{!! $post->content !!}</textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="created_at" class="form-label">Date</label>
+                            <input type="datetime-local" name="created_at" value="{{ $post->created_at }}">
+                        </div>
                         <div class="card-footer">
                             <input type="submit" value="Save" class="form-control btn btn-success">
                         </div>

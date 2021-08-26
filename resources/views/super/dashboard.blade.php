@@ -19,7 +19,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="button button-primary"><a href="{{ route('post.create') }}" class="btn btn-success">New Post</a></div>
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="{{ route('post.create') }}">New Post</a>
+                    </li>
+                    <li class="next">
+                        <a href="{{ route('post.index') }}">Older Posts &rarr;</a>
+                    </li>
+                </ul>
                 @foreach ($posts as $post)
                     <div class="post-preview">
                         <a href="{{ route('post.show',$post) }}">
@@ -41,6 +48,9 @@
                 @endforeach
                 <!-- Pager -->
                 <ul class="pager">
+                    <li class="previous">
+                        <a href="{{ route('post.create') }}">New Post</a>
+                    </li>
                     <li class="next">
                         <a href="{{ route('post.index') }}">Older Posts &rarr;</a>
                     </li>
